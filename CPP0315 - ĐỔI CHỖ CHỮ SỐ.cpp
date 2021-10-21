@@ -15,6 +15,7 @@ using namespace std;
 #define faster() ios_base::sync_with_stdio(0); cin.tie(NULL);cout.tie(NULL);
 #define vi vector<int>
 #define vll vector<ll>
+#define endl '\n'
 
 bool check(string &s)
 {

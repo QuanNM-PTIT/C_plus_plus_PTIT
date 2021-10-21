@@ -12,41 +12,58 @@ using namespace std;
 #define ll long long
 #define FOR(i, a, b) for(int i = a; i <= b; ++i)
 #define FORD(i, a, b) for(int i = a; i >= b; --i)
-#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL);cout.tie(NULL);
+#define F(i, a, b) for(int i = a; i < b; ++i)
+#define FD(i, a, b) for(int i = a; i > b; --i)
+#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 #define vi vector<int>
 #define vll vector<ll>
 #define vb vector<bool>
+#define PI 3.141592653589793238
 #define endl '\n'
 
-int BSearch(const vector<pair<int, int>> &vp, int k)
+int binSearchMin(int a[], int l, int r, int n)
 {
-    int l = 0, r = vp.sz - 1;
+    int mid;
     while(l <= r)
     {
-        int mid = (l + r) / 2;
-        if(vp[mid].fi == k) return vp[mid].se;
-        if(vp[mid].fi < k) l = mid + 1;
+        mid = l + (r - l) / 2;
+        if(a[mid] > a[n - 1]) l = mid + 1;
         else r = mid - 1;
     }
+    return mid;
+}
+
+int binSearch(int a[], int l, int r, int x)
+{
+    int mid;
+    while(l <= r)
+    {
+        mid = l + (r - l) / 2;
+        if(a[mid] == x) return mid;
+        if(a[mid] < x) l = mid + 1;
+        else r = mid - 1;
+    }
+    return mid;
 }
 
 int main()
 {
     faster();
-    int t, x, n, k;
+    int t, n, x, posMin;
     cin >> t;
     while(t--)
     {
-        vector<pair<int, int>> vp;
-        cin >> n >> k;
-        FOR(i, 1, n)
+        cin >> n >> x;
+        int a[n];
+        for(int &i : a) cin >> i;
+        posMin = binSearchMin(a, 0, n - 1, n);
+        if(!posMin)
         {
-            cin >> x;
-            vp.pb(mp(x, i));
+            cout << binSearch(a, 0, n - 1, x) + 1 << endl;
+            continue;
         }
-        sort(vp.begin(), vp.end());
-        cout << BSearch(vp, k) << endl;;
+        if(x < a[n - 1]) cout << binSearch(a, posMin, n - 1, x) + 1 << endl;
+        else cout << binSearch(a, 0, posMin - 1, x) + 1 << endl;
     }
     return 0;
 }
-

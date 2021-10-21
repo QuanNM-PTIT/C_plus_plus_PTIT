@@ -25,7 +25,7 @@ int main()
 {
     faster();
     int t;
-    cin>>t;
+    cin >> t;
     while(t--)
     {
         ll ans = 0;
