@@ -20,7 +20,6 @@ using namespace std;
 #define vb vector<bool>
 #define PI 3.141592653589793238
 #define endl '\n'
-#define a() a
 
 class SinhVien
 {
@@ -36,27 +35,24 @@ class SinhVien
         this -> bd = "";
         this -> GPA = 0;
     }
+    void nhap()
+    {
+        getline(cin, ten);
+        getline(cin, lop);
+        getline(cin, bd);
+        cin >> GPA;
+        if(bd[2] != '/') bd.insert(bd.begin(), '0');
+        if(bd[5] != '/') bd.insert(bd.begin() + 3, '0');
+    }
+    void xuat()
+    {
+        cout << msv << ' ' << ten << ' ' << lop << ' ' << bd << ' ' << setprecision(2) << fixed << GPA;
+    }
 };
 
-void nhap(SinhVien &a)
-{
-    getline(cin, a.ten);
-    a.ten = "Nguyen Van A";
-    getline(cin, a.lop);
-    getline(cin, a.bd);
-    cin >> a.GPA;
-    if(a.bd[2] != '/') a.bd.insert(a.bd.begin(), '0');
-    if(a.bd[5] != '/') a.bd.insert(a.bd.begin() + 3, '0');
-}
-
-void in(SinhVien &a)
-{
-    cout << a.msv << ' ' << a.ten << ' ' << a.lop << ' ' << a.bd << ' ' << setprecision(2) << fixed << a.GPA;
-}
-
 int main(){
-    SinhVien a();
-    nhap(a);
-    in(a);
+    SinhVien a;
+    a.nhap();
+    a.xuat();
     return 0;
 }
