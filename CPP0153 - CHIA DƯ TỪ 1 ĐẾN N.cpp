@@ -39,20 +39,21 @@
 //}
 //
 
-#include<stdio.h>
+#include <stdio.h>
 
 int main()
 {
     int t;
-    scanf("%d",&t);
+    scanf("%d", &t);
+    long long n, k, ans, a, b;
     while(t--)
     {
-        int n;
-        long long k;
-        scanf("%d%lld",&n,&k);
-        long long sum=0;
-        for(int i = 1; i <= n; ++i) sum += i%k;
-        printf("%lld\n",sum);
+        scanf("%lld%lld", &n, &k);
+        a = k - 1;
+        b = n % k;
+        if(!k) ans = 0;
+        else ans = a * (a + 1) / 2 * (n / k) + b * (b + 1) / 2;
+        printf("%lld\n", ans);
     }
     return 0;
 }
